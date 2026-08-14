@@ -1,0 +1,12 @@
+# Entorno virtual
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Cache de tooling local (no es código del proyecto)
+.atl/
+
+# macOS
+.DS_Store
