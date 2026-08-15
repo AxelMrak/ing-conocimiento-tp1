@@ -105,13 +105,13 @@ def punto_12(
 # 13. Calcular average de scores de un estudiante
 def punto_13(
     students: dict = {
-    101: {"nombre": "Ana", "edad": 16, "scores": {"matemáticas": 85, "ciencias": 90}},
-    102: {"nombre": "Luis", "edad": 17, "scores": {"matemáticas": 78, "ciencias": 88}}
+    101: {"nombre": "Ana", "edad": 16, "calificaciones": {"matemáticas": 85, "ciencias": 90}},
+    102: {"nombre": "Luis", "edad": 17, "calificaciones": {"matemáticas": 78, "ciencias": 88}}
     }
 ):
 
     for student_id, student_info in students.items():
-        scores = student_info["scores"]
+        scores = student_info["calificaciones"]
         average = sum(scores.values()) / len(scores)
         print(f"Estudiante: {student_info['nombre']}, Promedio: {average:.2f}")
 
@@ -131,18 +131,35 @@ def punto_14(
 
 
 # 15. Calcular average usando *args
-def punto_15():
+def punto_15(
+    *values
+):
+    average = sum(values) / len(values)
+
+    print(f"Promedio: {average}" )
     pass
 
 
 # 16. Crear perfil de usuario usando **kwargs
-def punto_16():
-    pass
+def punto_16(**kwargs: dict):
+    new_user = {}
+    for key, value in kwargs.items():
+        new_user[key] = value
+    return new_user
 
 
 # 17. Filtrar empleados según salario
-def punto_17():
-    pass
+def punto_17(employees: dict, salary: int):
+
+    matched_employees = {}
+
+    for id, values in employees.items():
+        salary_employee = values[2]
+        if salary_employee > salary:
+            matched_employees[id] = values
+
+    return matched_employees
+
 
 
 # 18. Calcular total y average de ventas diarias
