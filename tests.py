@@ -164,3 +164,21 @@ def test_punto_17() -> None:
     for empleados, umbral, esperado in casos:
         assert practico_1.punto_17(empleados, umbral) == esperado
 
+def test_punto_18() -> None:
+    casos = [
+        (
+            [200, 450, 300, 400, 350, 500, 600],
+            (2800, 400.0),
+        ),
+        (
+            [100, 200, 150, 300, 250],
+            (1000, 200.0),
+        ),
+        (
+            [],
+            (0, 0.0),
+        ),
+    ]
+
+    for ventas, esperado in casos:
+        assert practico_1.punto_18(ventas) == esperado

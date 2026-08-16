@@ -149,13 +149,13 @@ def punto_16(**kwargs: dict):
 
 
 # 17. Filtrar empleados según salario
-def punto_17(employees: dict, salary: int):
+def punto_17(employees: dict, threshold: int):
 
     matched_employees = {}
 
     for id, values in employees.items():
         salary_employee = values[2]
-        if salary_employee > salary:
+        if salary_employee > threshold:
             matched_employees[id] = values
 
     return matched_employees
@@ -163,8 +163,18 @@ def punto_17(employees: dict, salary: int):
 
 
 # 18. Calcular total y average de ventas diarias
-def punto_18():
-    pass
+def punto_18(
+    sales: list[int | float]
+):
+    sales_sum = sum(sales)
+    sales_qty = len(sales)
+
+    if sales_qty == 0:
+        return sales_sum, sales_qty
+
+    average = sales_sum / sales_qty
+
+    return sales_sum, average
 
 
 # 19. Calcular goles anotados y recibidos
