@@ -178,34 +178,80 @@ def punto_18(
 
 
 # 19. Calcular goles anotados y recibidos
-def punto_19():
-    pass
+def punto_19(matches: dict[str, tuple[int, int]]):
+    total_scored = 0
+    total_received = 0
 
+    for _team, match in matches.items():
+        goals_scored = match[0]
+        goals_received = match[1]
+
+        total_scored += goals_scored
+        total_received += goals_received
+
+    return total_scored, total_received
 
 # 20. Configurar aplicación usando **kwargs
-def punto_20():
-    pass
+def punto_20(
+    **kwargs: dict
+):
+    settings = {
+        "modo_oscuro": False,
+        "idioma": "es",
+        "notificaciones": False
+    }
+
+    for key, setting in kwargs.items():
+        if settings[key] == setting:
+            pass
+
+        settings[key] = setting
+
+    return settings
+
 
 
 # 21. Ordenar puntuaciones de mayor a menor
-def punto_21():
-    pass
+def punto_21(
+    scores: list[tuple[str, int]]
+):
+    sorted_scores = sorted(scores, key=lambda score:score[1], reverse=True)
 
+    return sorted_scores
 
 # 22. Calcular precio total de paquetes turísticos
-def punto_22():
-    pass
+def punto_22(
+    travels: list[tuple[str, int, int]]
+):
 
+    formatted_travels = {}
+
+    for (destination, price, duration_days) in travels:
+        formatted_travels[destination] = price * duration_days
+
+
+    return formatted_travels
 
 # 23. Actualizar inventario según ventas
-def punto_23():
-    pass
+def punto_23(
+    inventory: list[int],
+    sales: list[int]
+):
+    for index, sale in enumerate(sales):
+        inventory[index] = inventory[index] - sale
 
+    return inventory
 
 # 24. Imprimir eventos usando *args
-def punto_24():
-    pass
+def punto_24(
+    *events: tuple[str]
+):
+    if len(events) == 0:
+        print("No hay eventos disponibles.")
 
+    for key, event in enumerate(events):
+        normalized_key = key + 1
+        print(f"[{normalized_key}] {event}")
 
 # 25. Calcular balance financiero usando **kwargs
 def punto_25():

@@ -182,3 +182,169 @@ def test_punto_18() -> None:
 
     for ventas, esperado in casos:
         assert practico_1.punto_18(ventas) == esperado
+
+def test_punto_19() -> None:
+    casos = [
+        (
+            {
+                "Equipo A": (3, 2),
+                "Equipo B": (1, 1),
+                "Equipo C": (4, 0)
+            },
+            (8, 3)
+        ),
+        (
+            {
+                "Equipo X": (2, 3),
+                "Equipo Y": (0, 1),
+                "Equipo Z": (5, 2)
+            },
+            (7, 6)
+        ),
+        (
+            {
+                "Boca Juniors": (3, 1),
+                "Independiente": (5, 2),
+                "Estudiantes": (1, 3)
+            },
+            (9, 6)
+        ),
+        (
+            {},
+            (0, 0)
+        ),
+    ]
+
+    for resultados, esperado in casos:
+        assert practico_1.punto_19(resultados) == esperado
+
+def test_punto_20() -> None:
+    casos = [
+        (
+            {
+                "modo_oscuro": True, "idioma": "es", "notificaciones": False
+            },
+            {
+                "modo_oscuro": True, "idioma": "es", "notificaciones": False
+            }
+        ),
+        (
+            {
+                "modo_oscuro": False, "idioma": "en", "notificaciones": True
+            },
+            {
+                "modo_oscuro": False, "idioma": "en", "notificaciones": True
+            }
+        ),
+        (
+            {},
+            {
+                "modo_oscuro": False, "idioma": "es", "notificaciones": False
+            }
+        )
+    ]
+
+    for configuraciones, esperado in casos:
+        assert practico_1.punto_20(**configuraciones) == esperado
+
+def test_punto_21() -> None:
+    casos = [
+        (
+            [("Ana", 85), ("Luis", 90), ("María", 78)],
+            [("Luis", 90), ("Ana", 85), ("María", 78)]
+        ),
+        (
+            [("Pedro", 70), ("Sara", 95), ("Juan", 80)],
+            [("Sara", 95), ("Juan", 80), ("Pedro", 70)]
+        ),
+        (
+            [],
+            []
+        )
+    ]
+
+    for estudiantes, esperado in casos:
+        assert practico_1.punto_21(estudiantes) == esperado
+
+
+def test_punto_22() -> None:
+    casos = [
+        (
+            [
+                ("Paris", 200, 5),
+                ("Roma", 150, 4),
+                ("Londres", 180, 3)
+            ],
+            {
+                "Paris": 1000,
+                "Roma": 600,
+                "Londres": 540
+            }
+        ),
+        (
+            [
+                ("Madrid", 120, 6),
+                ("Berlin", 90, 5),
+                ("Lisboa", 80, 4)
+            ],
+            {
+                "Madrid": 720,
+                "Berlin": 450,
+                "Lisboa": 320
+            }
+        ),
+        (
+            [],
+            {}
+        )
+    ]
+
+    for viajes, esperado in casos:
+        assert practico_1.punto_22(viajes) == esperado
+
+def test_punto_23() -> None:
+    casos = [
+        (
+           [
+                50, 30, 20, 10
+            ],
+            [
+                5, 10, 5, 2
+            ],
+            [
+                45, 20, 15, 8
+            ]
+        ),
+        (
+            [
+                100, 200, 150
+            ],
+            [
+                20, 50, 30
+            ],
+            [
+                80, 150, 120
+            ]
+        ),
+        (
+            [],
+            [],
+            []
+        )
+    ]
+
+    for inventario, ventas, esperado in casos:
+        assert practico_1.punto_23(inventario, ventas) == esperado
+
+def test_punto_24() -> None:
+    with _ejecutar(practico_1.punto_24, "Concierto", "Exposición de arte", "Conferencia") as salida:
+        assert "[1] Concierto" in salida
+        assert "[2] Exposición de arte" in salida
+        assert "[3] Conferencia" in salida
+
+    with _ejecutar(practico_1.punto_24, "Feria", "Festival") as salida:
+        assert "[1] Feria" in salida
+        assert "[2] Festival" in salida
+
+    with _ejecutar(practico_1.punto_24) as salida:
+        assert "No hay eventos disponibles." in salida
