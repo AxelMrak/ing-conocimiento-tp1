@@ -532,3 +532,242 @@ def test_punto_30() -> None:
 
     for usuarios, kwargs, esperado in casos:
         assert practico_1.punto_30(usuarios, **kwargs) == esperado
+
+
+def test_punto_31() -> None:
+    casos = [
+        (
+            ("Juan", "Mi primer post!"),
+            {"etiquetas": ["#hola", "#primerPost"], "visibilidad": "publica", "likes": 100},
+            {
+                "usuario": "Juan",
+                "texto": "Mi primer post!",
+                "etiquetas": ["#hola", "#primerPost"],
+                "visibilidad": "publica",
+                "likes": 100,
+            },
+        ),
+        (
+            ("Ana", "Hola mundo"),
+            {},
+            {
+                "usuario": "Ana",
+                "texto": "Hola mundo",
+            },
+        ),
+        (
+            ("Luis", "Promoción"),
+            {"etiquetas": ["#oferta"], "comentarios": True},
+            {
+                "usuario": "Luis",
+                "texto": "Promoción",
+                "etiquetas": ["#oferta"],
+                "comentarios": True,
+            },
+        ),
+    ]
+
+    for args, kwargs, esperado in casos:
+        assert practico_1.punto_31(*args, **kwargs) == esperado
+
+
+def test_punto_32() -> None:
+    casos = [
+        (
+            (("Producto A", 10, 15.0), ("Producto B", 5, 25.0), ("Producto C", 3, 50.0)),
+            425.0,
+        ),
+        (
+            (("X", 2, 10.0), ("Y", 3, 5.0)),
+            35.0,
+        ),
+        (
+            (),
+            0,
+        ),
+    ]
+
+    for sales, esperado in casos:
+        assert practico_1.punto_32(*sales) == esperado
+
+
+def test_punto_33() -> None:
+    casos = [
+        (
+            {
+                "2024-08-15": [("Juan", 101, 150), ("Ana", 102, 180)],
+                "2024-08-16": [("Luis", 101, 150)],
+            },
+            "2024-08-15", "Pedro", 103, 200,
+            {
+                "2024-08-15": [("Juan", 101, 150), ("Ana", 102, 180), ("Pedro", 103, 200)],
+                "2024-08-16": [("Luis", 101, 150)],
+            },
+        ),
+        (
+            {
+                "2024-08-15": [("Juan", 101, 150), ("Ana", 102, 180)],
+                "2024-08-16": [("Luis", 101, 150)],
+            },
+            "2024-08-15", "Pedro", 101, 200,
+            {
+                "2024-08-15": [("Juan", 101, 150), ("Ana", 102, 180)],
+                "2024-08-16": [("Luis", 101, 150)],
+            },
+        ),
+    ]
+
+    for reservations, date, guest, room, price, esperado in casos:
+        assert practico_1.punto_33(reservations, date, guest, room, price) == esperado
+
+
+def test_punto_34() -> None:
+    casos = [
+        (
+            {
+                "¿Cómo califica el servicio?": [5, 4, 5, 3, 5, 4],
+                "¿Recomendaría nuestro producto?": [1, 1, 0, 1, 1, 0],
+            },
+            {
+                "¿Cómo califica el servicio?": {5: 3, 4: 2, 3: 1},
+                "¿Recomendaría nuestro producto?": {1: 4, 0: 2},
+            },
+        ),
+        (
+            {"Pregunta": [1, 1, 1]},
+            {"Pregunta": {1: 3}},
+        ),
+        (
+            {},
+            {},
+        ),
+    ]
+
+    for surveys, esperado in casos:
+        assert practico_1.punto_34(surveys) == esperado
+
+
+def test_punto_35() -> None:
+    casos = [
+        (
+            [("Madrid", "Barcelona", 620), ("Madrid", "Valencia", 350), ("Barcelona", "Valencia", 350)],
+            [600, 400, 500],
+            [("Madrid", "Valencia", 350), ("Barcelona", "Valencia", 350)],
+        ),
+        (
+            [("A", "B", 100)],
+            [50],
+            [],
+        ),
+        (
+            [("A", "B", 100)],
+            [200],
+            [("A", "B", 100)],
+        ),
+    ]
+
+    for routes, max_distances, esperado in casos:
+        assert practico_1.punto_35(routes, max_distances) == esperado
+
+
+def test_punto_36() -> None:
+    casos = [
+        (
+            {"Tienda A": {"producto_1": 50, "producto_2": 30}, "Tienda B": {"producto_1": 20, "producto_2": 40}},
+            "Tienda A",
+            {"producto_1": 10, "producto_2": -5},
+            {"Tienda A": {"producto_1": 60, "producto_2": 25}, "Tienda B": {"producto_1": 20, "producto_2": 40}},
+        ),
+        (
+            {"Tienda A": {"producto_1": 50, "producto_2": 30}, "Tienda B": {"producto_1": 20, "producto_2": 40}},
+            "Tienda C",
+            {"producto_1": 5},
+            {"Tienda A": {"producto_1": 50, "producto_2": 30}, "Tienda B": {"producto_1": 20, "producto_2": 40}, "Tienda C": {"producto_1": 5}},
+        ),
+    ]
+
+    for inventory, store, kwargs, esperado in casos:
+        assert practico_1.punto_36(inventory, store, **kwargs) == esperado
+
+
+def test_punto_37() -> None:
+    casos = [
+        (
+            ["#verano", "#moda", "#viajes", "#verano", "#moda", "#tecnologia"],
+            [("#verano", 120), ("#moda", 80), ("#tecnologia", 150)],
+            50,
+            ["#verano", "#moda", "#tecnologia"],
+        ),
+        (
+            ["#verano", "#moda", "#viajes", "#verano", "#moda", "#tecnologia"],
+            [("#verano", 120), ("#moda", 80), ("#tecnologia", 150)],
+            100,
+            ["#verano", "#tecnologia"],
+        ),
+        (
+            ["#a", "#a", "#b"],
+            [("#a", 10), ("#b", 3)],
+            5,
+            ["#a"],
+        ),
+    ]
+
+    for hashtags, trends, threshold, esperado in casos:
+        assert practico_1.punto_37(hashtags, trends, threshold) == esperado
+
+
+def test_punto_38() -> None:
+    casos = [
+        (
+            {"Jose": ["mensual", "anual"], "Ana": ["mensual"]},
+            {"usuario": "Luis", "suscripcion": "mensual", "auto_renovacion": True},
+            {"Jose": ["mensual", "anual"], "Ana": ["mensual"], "Luis": [{"tipo": "mensual", "auto_renovacion": True}]},
+        ),
+        (
+            {"Jose": ["mensual"]},
+            {"usuario": "Jose", "suscripcion": "anual"},
+            {"Jose": ["mensual", {"tipo": "anual"}]},
+        ),
+    ]
+
+    for history, kwargs, esperado in casos:
+        assert practico_1.punto_38(history, **kwargs) == esperado
+
+
+def test_punto_39() -> None:
+    casos = [
+        (
+            [100, 105, 102, 110, 108],
+            [("compra", 0), ("venta", 3), ("compra", 2), ("venta", 4)],
+            16,
+        ),
+        (
+            [50, 60, 55],
+            [("compra", 0), ("venta", 2)],
+            5,
+        ),
+        (
+            [10, 20],
+            [],
+            0,
+        ),
+    ]
+
+    for prices, operations, esperado in casos:
+        assert practico_1.punto_39(prices, operations) == esperado
+
+
+def test_punto_40() -> None:
+    casos = [
+        (
+            {
+                101: {"matemáticas": [85, 90, 78], "ciencias": [88, 85, 80]},
+                102: {"matemáticas": [92, 88, 84], "ciencias": [75, 80, 85]},
+                103: {"matemáticas": [78, 85, 88], "ciencias": [90, 95, 92]},
+            },
+            [(103, 528 / 6), (101, 506 / 6), (102, 504 / 6)],
+        ),
+    ]
+
+    for students, esperado in casos:
+        assert practico_1.punto_40(students) == esperado

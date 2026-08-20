@@ -338,50 +338,168 @@ def punto_30(
 
 
 # 31. Crear publicación de red social con etiquetas y opciones
-def punto_31():
-    pass
+def punto_31(user: str, text: str, **kwargs: object):
+    post: dict[str, object] = {
+        "usuario": user,
+        "texto": text,
+    }
+
+    for key, value in kwargs.items():
+        post[key] = value
+
+    return post
 
 
 # 32. Simular ventas y calcular ingresos totales
-def punto_32():
-    pass
+def punto_32(*sales: tuple[str, int, float]):
+    total_revenue = 0
+
+    for (product, quantity, unit_price) in sales:
+        total_revenue += quantity * unit_price
+
+    return total_revenue
 
 
 # 33. Crear una reserva verificando disponibilidad
-def punto_33():
-    pass
+def punto_33(
+    reservations: dict[str, list],
+    date: str,
+    guest: str,
+    room: int,
+    price: int | float,
+):
+    if date not in reservations:
+        reservations[date] = []
+
+    for (existing_guest, existing_room, existing_price) in reservations[date]:
+        if existing_room == room:
+            return reservations
+
+    reservations[date].append((guest, room, price))
+
+    return reservations
 
 
 # 34. Calcular frecuencia de respuestas en encuestas
-def punto_34():
-    pass
+def punto_34(
+    surveys: dict[str, list]
+):
+    frequencies = {}
+
+    for question, responses in surveys.items():
+        question_freq = {}
+
+        for response in responses:
+            question_freq[response] = question_freq.get(response, 0) + 1
+
+        frequencies[question] = question_freq
+
+    return frequencies
 
 
 # 35. Filtrar rutas según distancias máximas
-def punto_35():
-    pass
+def punto_35(
+    routes: list[tuple[str, str, int | float]],
+    max_distances: list[int | float],
+):
+    valid_routes = []
+
+    for index, (origin, destination, distance) in enumerate(routes):
+        if distance <= max_distances[index]:
+            valid_routes.append((origin, destination, distance))
+
+    return valid_routes
 
 
 # 36. Actualizar inventario de múltiples tiendas
-def punto_36():
-    pass
+def punto_36(inventory: dict, store: str, **kwargs: int):
+    if store not in inventory:
+        inventory[store] = {}
+
+    for product, quantity in kwargs.items():
+        inventory[store][product] = inventory[store].get(product, 0) + quantity
+
+    return inventory
 
 
 # 37. Analizar tendencias de hashtags
-def punto_37():
-    pass
+def punto_37(
+    hashtags: list[str],
+    trends: list[tuple[str, int]],
+    threshold: int,
+):
+    trend_freq = {tag: freq for tag, freq in trends}
+
+    mention_counts = {}
+    for tag in hashtags:
+        mention_counts[tag] = mention_counts.get(tag, 0) + 1
+
+    result = []
+    seen = set()
+
+    for tag in hashtags:
+        if tag in seen:
+            continue
+
+        freq = trend_freq[tag] if tag in trend_freq else mention_counts.get(tag, 0)
+
+        if freq > threshold:
+            result.append(tag)
+            seen.add(tag)
+
+    return result
 
 
 # 38. Actualizar suscripciones de usuarios
-def punto_38():
-    pass
+def punto_38(subscription_history: dict, **kwargs: object):
+    user = kwargs["usuario"]
+    subscription_type = kwargs["suscripcion"]
+
+    if user not in subscription_history:
+        subscription_history[user] = []
+
+    record: dict[str, object] = {"tipo": subscription_type}
+    for key, value in kwargs.items():
+        if key not in ("usuario", "suscripcion"):
+            record[key] = value
+
+    subscription_history[user].append(record)
+
+    return subscription_history
 
 
 # 39. Simular operaciones del mercado bursátil
-def punto_39():
-    pass
+def punto_39(
+    daily_prices: list[int | float],
+    operations: list[tuple[str, int]],
+):
+    profit = 0
+
+    for (action, day) in operations:
+        price = daily_prices[day]
+
+        if action == "compra":
+            profit -= price
+        elif action == "venta":
+            profit += price
+
+    return profit
 
 
 # 40. Crear ranking de students por average
-def punto_40():
-    pass
+def punto_40(
+    students: dict[int, dict[str, list]]
+):
+    overall_averages = {}
+
+    for student_id, subjects in students.items():
+        all_grades = []
+
+        for grades in subjects.values():
+            all_grades.extend(grades)
+
+        overall_averages[student_id] = sum(all_grades) / len(all_grades)
+
+    ranking = sorted(overall_averages.items(), key=lambda item: item[1], reverse=True)
+
+    return ranking
