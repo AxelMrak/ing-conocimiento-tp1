@@ -389,3 +389,146 @@ def test_punto_25() -> None:
 
     for kwargs, esperado in casos:
         assert practico_1.punto_25(**kwargs) == esperado
+
+
+def test_punto_26() -> None:
+    casos = [
+        (
+            ("Ana", 30, 3000),
+            {"direccion": "Calle Falsa 123", "telefono": "123456789"},
+            {
+                "nombre": "Ana",
+                "edad": 30,
+                "salario": 3000,
+                "direccion": "Calle Falsa 123",
+                "telefono": "123456789",
+            },
+        ),
+        (
+            ("Luis", 25, 2500),
+            {},
+            {
+                "nombre": "Luis",
+                "edad": 25,
+                "salario": 2500,
+            },
+        ),
+        (
+            ("María", 40, 5000),
+            {"ciudad": "Rosario", "activo": True},
+            {
+                "nombre": "María",
+                "edad": 40,
+                "salario": 5000,
+                "ciudad": "Rosario",
+                "activo": True,
+            },
+        ),
+    ]
+
+    for args, kwargs, esperado in casos:
+        assert practico_1.punto_26(*args, **kwargs) == esperado
+
+
+def test_punto_27() -> None:
+    casos = [
+        (
+            [2000, 2500, 3000, 2800, 3500, 4000, 4200, 3800, 3600, 3900, 4100, 4500],
+            {"total": 41900, "promedio": 41900 / 12, "mes_mayor_venta": 12},
+        ),
+        (
+            [100, 200, 150],
+            {"total": 450, "promedio": 150.0, "mes_mayor_venta": 2},
+        ),
+        (
+            [],
+            {"total": 0, "promedio": 0.0, "mes_mayor_venta": None},
+        ),
+    ]
+
+    for ventas, esperado in casos:
+        assert practico_1.punto_27(ventas) == esperado
+
+
+def test_punto_28() -> None:
+    casos = [
+        (
+            {
+                "El señor de los anillos": {"autor": "J.R.R. Tolkien", "año": 1954, "género": "Fantasía"},
+                "Cien años de soledad": {"autor": "Gabriel García Márquez", "año": 1967, "género": "Realismo mágico"},
+                "El código Da Vinci": {"autor": "Dan Brown", "año": 2003, "género": "Suspenso"},
+            },
+            ["El código Da Vinci"],
+        ),
+        (
+            {
+                "1984": {"autor": "George Orwell", "año": 1949, "género": "Distopía"},
+                "Fahrenheit 451": {"autor": "Ray Bradbury", "año": 1953, "género": "Distopía"},
+            },
+            [],
+        ),
+        (
+            {},
+            [],
+        ),
+    ]
+
+    for biblioteca, esperado in casos:
+        assert practico_1.punto_28(biblioteca) == esperado
+
+
+def test_punto_29() -> None:
+    casos = [
+        (
+            [
+                ("Ana", [85, 90, 78]),
+                ("Luis", [88, 92, 80]),
+                ("María", [75, 85, 70]),
+            ],
+            {"Ana": 253 / 3, "Luis": 260 / 3, "María": 230 / 3},
+        ),
+        (
+            [
+                ("Pedro", [100, 100, 100]),
+                ("Sara", [60, 70, 80]),
+            ],
+            {"Pedro": 100.0, "Sara": 70.0},
+        ),
+        (
+            [],
+            {},
+        ),
+    ]
+
+    for notas, esperado in casos:
+        assert practico_1.punto_29(notas) == esperado
+
+
+def test_punto_30() -> None:
+    casos = [
+        (
+            ["Ana", "Luis", "María"],
+            {"idioma": "es", "modo_oscuro": True, "notificaciones": False},
+            {
+                "Ana": ["es", True, False],
+                "Luis": ["es", True, False],
+                "María": ["es", True, False],
+            },
+        ),
+        (
+            ["Juan", "Pedro"],
+            {"tema": "oscuro", "fuente": "grande"},
+            {
+                "Juan": ["oscuro", "grande"],
+                "Pedro": ["oscuro", "grande"],
+            },
+        ),
+        (
+            [],
+            {"idioma": "en"},
+            {},
+        ),
+    ]
+
+    for usuarios, kwargs, esperado in casos:
+        assert practico_1.punto_30(usuarios, **kwargs) == esperado

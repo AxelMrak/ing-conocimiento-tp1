@@ -259,28 +259,82 @@ def punto_25(**income: int) -> int:
 
 
 # 26. Registrar empleado con parámetros y **kwargs
-def punto_26():
-    pass
+def punto_26(name: str, age: int, salary: int, **kwargs: object):
+    employee = {
+        "nombre": name,
+        "edad": age,
+        "salario": salary,
+    }
+
+    for key, value in kwargs.items():
+        employee[key] = value
+
+    return employee
 
 
 # 27. Calcular estadísticas de ventas mensuales
-def punto_27():
-    pass
+def punto_27(
+    monthly_sales: list[int | float]
+):
+    total_sales = sum(monthly_sales)
+    month_count = len(monthly_sales)
+
+    if month_count == 0:
+        return {
+            "total": total_sales,
+            "promedio": 0.0,
+            "mes_mayor_venta": None,
+        }
+
+    monthly_average = total_sales / month_count
+    top_month = monthly_sales.index(max(monthly_sales)) + 1
+
+    return {
+        "total": total_sales,
+        "promedio": monthly_average,
+        "mes_mayor_venta": top_month,
+    }
 
 
 # 28. Obtener libros publicados después del año 2000
-def punto_28():
-    pass
+def punto_28(
+    library: dict[str, dict]
+):
+    recent_books = []
+
+    for title, details in library.items():
+        if details["año"] > 2000:
+            recent_books.append(title)
+
+    return recent_books
 
 
 # 29. Calcular average de notas por estudiante
-def punto_29():
-    pass
+def punto_29(
+    student_grades: list[tuple[str, list[int | float]]]
+):
+    averages = {}
+
+    for (name, grades) in student_grades:
+        average = sum(grades) / len(grades)
+        averages[name] = average
+
+    return averages
 
 
 # 30. Configurar perfiles de usuarios usando **kwargs
-def punto_30():
-    pass
+def punto_30(
+    users: list[str],
+    **kwargs: object
+):
+    settings = list(kwargs.values())
+
+    profiles = {}
+
+    for user in users:
+        profiles[user] = list(settings)
+
+    return profiles
 
 
 # 31. Crear publicación de red social con etiquetas y opciones
