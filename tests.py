@@ -348,3 +348,44 @@ def test_punto_24() -> None:
 
     with _ejecutar(practico_1.punto_24) as salida:
         assert "No hay eventos disponibles." in salida
+
+def test_punto_25() -> None:
+    casos = [
+        (
+            {
+                "sueldo": 2000,
+                "renta": -800,
+                "transporte": -150,
+                "comida": -300,
+                "freelance": 500,
+            },
+            1250,
+        ),
+        (
+            {
+                "sueldo": 3000,
+                "renta": -1000,
+                "transporte": -200,
+                "comida": -400,
+                "freelance": 800,
+            },
+            2200,
+        ),
+        (
+            {
+                "sueldo": 1500,
+                "renta": -600,
+                "transporte": -100,
+                "comida": -200,
+                "freelance": 300,
+            },
+            900,
+        ),
+        (
+            {},
+            0,
+        ),
+    ]
+
+    for kwargs, esperado in casos:
+        assert practico_1.punto_25(**kwargs) == esperado

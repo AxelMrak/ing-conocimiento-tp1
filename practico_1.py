@@ -254,8 +254,8 @@ def punto_24(
         print(f"[{normalized_key}] {event}")
 
 # 25. Calcular balance financiero usando **kwargs
-def punto_25():
-    pass
+def punto_25(**income: int) -> int:
+    return sum(income.values())
 
 
 # 26. Registrar empleado con parámetros y **kwargs
